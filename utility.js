@@ -11,4 +11,17 @@ function OpenInNewTab(url) {
     tab.focus();
 }
 
+// Function for string formatting. Use like
+// 'This is a {0} string that can be {1} {2}.'.format('Cool', 'formatted')
+// Output >> This is a Cool string that can be formatted {2}.
+if (!String.prototype.format) {
+    String.prototype.format = function() {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function(match, number) {
+            return typeof args[number] != 'undefined'
+                ? args[number] : match;
+        });
+    };
+}
+
 /** Jquery **/
